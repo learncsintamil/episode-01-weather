@@ -12,17 +12,13 @@ const forecast = (latitude, longitude, callback) => {
       callback("unable to find location.", undefined);
       return;
     }
-    callback(
-      undefined,
-      body.current.weather_descriptions[0] +
-        ". it is currently " +
-        body.current.temperature +
-        " degree celsius. Winds speed " +
-        body.current.wind_speed +
-        " km/hr.The Humidity is " +
-        body.current.humidity +
-        "%."
-    );
+
+    callback(undefined, {
+      description: body.current.weather_descriptions[0],
+      temperature: body.current.temperature,
+      windSpeed: body.current.wind_speed,
+      humidity: body.current.humidity,
+    });
   });
 };
 module.exports = forecast;
