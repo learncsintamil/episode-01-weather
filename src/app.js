@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 //console.log(path.join(__dirname,'..'))
 //console.log(path.join(__dirname,'../public'))
 //path for con fig
-const publicDirectryPath = path.join(__dirname, "../public");
+const publicDirectoryPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
 const partialsPath = path.join(__dirname, "../templates/partials");
 //setup handlebar engine and view location
@@ -19,7 +19,7 @@ app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 //setup static directory to serve
-app.use(express.static(publicDirectryPath));
+app.use(express.static(publicDirectoryPath));
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
@@ -43,7 +43,7 @@ app.get("/help", function (req, res) {
 app.get("/help/*", (req, res) => {
   res.render("404", {
     title: "404",
-    errormessage: "Help ariticle not found",
+    errormessage: "Help article not found",
     name: "Vasanth",
   });
 });
