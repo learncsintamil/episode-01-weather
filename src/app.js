@@ -35,7 +35,7 @@ app.get("/about", function (req, res) {
 });
 app.get("/help", function (req, res) {
   res.render("help", {
-    helptext: "Follow this Instruction:",
+    helpText: "Follow this Instruction:",
     title: "Help",
     name: "Vasanth",
   });
@@ -43,7 +43,7 @@ app.get("/help", function (req, res) {
 app.get("/help/*", (req, res) => {
   res.render("404", {
     title: "404",
-    errormessage: "Help article not found",
+    errorMessage: "Help article not found",
     name: "Vasanth",
   });
 });
@@ -69,7 +69,7 @@ app.get("/weather", async (req, res) => {
 app.get("*", (req, res) => {
   res.render("404", {
     title: "404",
-    errormessage: "Page not found",
+    errorMessage: "Page not found",
     name: "Vasanth",
   });
 });
