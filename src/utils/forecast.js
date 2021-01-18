@@ -1,4 +1,6 @@
 const request = require("request");
+const util = require("util");
+
 const forecast = (latitude, longitude, callback) => {
   const baseUrl = `http://api.weatherstack.com`;
   const accessKey = process.env.WEATHER_APP_WEATHER_STACK_ACCESS_KEY;
@@ -21,4 +23,4 @@ const forecast = (latitude, longitude, callback) => {
     });
   });
 };
-module.exports = forecast;
+module.exports = util.promisify(forecast);

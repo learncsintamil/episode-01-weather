@@ -47,30 +47,23 @@ app.get("/help/*", (req, res) => {
     name: "Vasanth",
   });
 });
-app.get("/weather", (req, res) => {
+app.get("/weather", async (req, res) => {
   if (!req.query.address) {
     return res.send({
       error: "You must provide the correct Location",
     });
   }
-  geocode(
-    req.query.address,
-    (error, { latitude, longitude, location } = {}) => {
-      if (error) {
-        return res.send({ error });
-      }
-      forecast(latitude, longitude, (error, forecastData) => {
-        if (error) {
-          return res.send({ error });
-        }
-        res.send({
-          forecast: forecastData,
-          location,
-          address: req.query.address,
-        });
-      });
-    }
-  );
+  try {
+    const { latitude, longitude, location } = await geocode(req.query.address);
+    const forecastData = await forecast(latitude, longitude);
+    res.send({
+      forecast: forecastData,
+      location,
+      address: req.query.address,
+    });
+  } catch (error) {
+    return res.send({ error });
+  }
 });
 
 app.get("*", (req, res) => {

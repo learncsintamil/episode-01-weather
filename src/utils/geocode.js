@@ -1,4 +1,5 @@
 const request = require("request");
+const util = require("util");
 
 const geocode = (address, callback) => {
   const accessToken = process.env.WEATHER_APP_MAP_BOX_ACCESS_TOKEN;
@@ -21,4 +22,4 @@ const geocode = (address, callback) => {
   });
 };
 
-module.exports = geocode;
+module.exports = util.promisify(geocode);
